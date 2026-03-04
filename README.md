@@ -1,61 +1,114 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/escape-the-valley/readme.png" width="400" alt="Ledger Trail: Escape the Valley">
+  <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/escape-the-valley/readme.png" width="400" alt="Escape the Valley">
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@mcptoolshop/escape-the-valley"><img src="https://img.shields.io/npm/v/@mcptoolshop/escape-the-valley" alt="npm"></a>
+  <a href="https://www.npmjs.com/package/@mcptoolshop/escape-the-valley"><img src="https://img.shields.io/npm/v/@mcptoolshop/escape-the-valley" alt="npm version"></a>
   <a href="https://pypi.org/project/escape-the-valley/"><img src="https://img.shields.io/pypi/v/escape-the-valley" alt="PyPI"></a>
-  <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License">
+  <a href="https://github.com/mcp-tool-shop-org/npm-escape-the-valley/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License"></a>
+  <a href="https://mcp-tool-shop-org.github.io/escape-the-valley/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page"></a>
 </p>
 
-<p align="center">
-  <em>A survival game where the trail is the teacher and the ledger keeps you honest.</em>
-</p>
+Oregon Trail-style survival game with AI narration and an optional XRPL ledger backpack.
 
----
+**No Python required.** This package downloads a prebuilt binary and runs it locally.
 
-## Install
+## Install & Run
 
 ```bash
 npx @mcptoolshop/escape-the-valley tui --seed 42
 ```
 
-Or install globally:
+That's it. No Python, no pip, no virtual environments.
+
+### Continue a saved game
 
 ```bash
-npm install -g @mcptoolshop/escape-the-valley
-trail tui --seed 42
+npx @mcptoolshop/escape-the-valley tui --continue
 ```
 
-Also available via pip:
+Picks up right where you left off — the game auto-saves at every checkpoint.
+
+## What Happens
+
+1. First run downloads a platform-specific binary (~15 MB) from [GitHub Releases](https://github.com/mcp-tool-shop-org/escape-the-valley/releases)
+2. Verifies SHA256 checksum
+3. Caches locally (`~/.cache/mcptoolshop/escape-the-valley/`)
+4. Runs with full arg passthrough
+
+Subsequent runs launch instantly from cache.
+
+## The Game
+
+Lead a party of settlers through a procedurally generated wilderness. Manage food, water, wagon condition, and morale while navigating events, hazards, and hard choices. The valley is harsh but fair — a skilled player wins about 1 in 3 runs.
+
+An optional **AI Game Master** (powered by Ollama) narrates your journey with three storytelling voices. An optional **XRPL Testnet ledger backpack** tracks every supply change as on-chain receipts.
+
+### Camp Actions
+
+| Action | What It Does |
+|--------|-------------|
+| **Travel** | Move toward the exit — every turn not moving burns supplies for nothing |
+| **Rest** | Recover health and morale, chance to cure conditions |
+| **Hunt** | Forage for food (best in forests and plains) |
+| **Repair** | Fix wagon damage before it strands you |
+| **Ration** | Cut to half-rations when food is scarce (costs morale) |
+| **Abandon** | Drop cargo weight for speed (last resort) |
+
+### GM Profiles
+
+| Profile | Voice |
+|---------|-------|
+| **Chronicler** | Dry, factual, historical tone |
+| **Fireside** | Warm, folksy storyteller |
+| **Lantern-Bearer** | Eerie, atmospheric, foreboding |
+
+## Commands
+
+```bash
+npx @mcptoolshop/escape-the-valley tui                    # start a new game
+npx @mcptoolshop/escape-the-valley tui --seed 42          # seeded world gen
+npx @mcptoolshop/escape-the-valley tui --continue         # resume saved game
+npx @mcptoolshop/escape-the-valley tui --gm chronicler    # choose GM voice
+npx @mcptoolshop/escape-the-valley tui --callouts minimal # fewer warnings
+npx @mcptoolshop/escape-the-valley ledger                 # print trail ledger
+npx @mcptoolshop/escape-the-valley --help                 # see all commands
+```
+
+## Supported Platforms
+
+- Linux x64
+- macOS ARM64 (Apple Silicon)
+- Windows x64
+
+## Troubleshooting
+
+```bash
+npx @mcptoolshop/escape-the-valley --print-cache-path  # show cached binary location
+npx @mcptoolshop/escape-the-valley --clear-cache       # force fresh re-download
+```
+
+**Pin to a specific version** if the latest has a regression:
+
+```bash
+npx @mcptoolshop/escape-the-valley@1.0.0 tui --seed 42
+```
+
+## Security
+
+All binaries are verified against SHA256 checksums before execution. No telemetry. No network access beyond the initial download from GitHub.
+
+Powered by [@mcptoolshop/npm-launcher](https://github.com/mcp-tool-shop-org/npm-launcher).
+
+## Alternative: Install via Python
+
+If you prefer Python:
 
 ```bash
 pip install escape-the-valley
 trail tui --seed 42
 ```
 
-## What Is This?
-
-Escape the Valley is an Oregon Trail-style survival game that runs in your terminal. Lead a party of settlers through a procedurally generated wilderness. Manage food, water, wagon condition, and morale while navigating events, hazards, and hard choices.
-
-An optional AI Game Master (powered by Ollama) narrates your journey with three distinct storytelling voices. An optional XRPL Testnet ledger backpack tracks your supply changes as on-chain receipts.
-
-## How It Works
-
-This npm package downloads a pre-built binary from GitHub Releases with SHA256 verification. No Python installation required.
-
-- Binaries cached at `~/.cache/mcptoolshop/escape-the-valley/`
-- `--clear-cache` to remove cached binaries
-- `--print-cache-path` to show cache location
-
-## Links
-
-- [Source code](https://github.com/mcp-tool-shop-org/escape-the-valley)
-- [PyPI package](https://pypi.org/project/escape-the-valley/)
-- [Landing page](https://mcp-tool-shop-org.github.io/escape-the-valley/)
-
-## License
-
-MIT
+---
 
 Built by <a href="https://mcp-tool-shop.github.io/">MCP Tool Shop</a>
