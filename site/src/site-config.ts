@@ -15,7 +15,7 @@ export const config: SiteConfig = {
     headlineAccent: 'one command to play.',
     description: 'Oregon Trail-style survival game with AI narration and optional XRPL ledger backpack. No Python, no pip, no virtual environments — just npx and go.',
     primaryCta: { href: '#quickstart', label: 'Get started' },
-    secondaryCta: { href: '#features', label: 'Learn more' },
+    secondaryCta: { href: 'handbook/', label: 'Read the Handbook' },
     previews: [
       { label: 'Play', code: 'npx @mcptoolshop/escape-the-valley tui --seed 42' },
       { label: 'Resume', code: 'npx @mcptoolshop/escape-the-valley tui --continue' },
